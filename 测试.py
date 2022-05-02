@@ -1,8 +1,7 @@
 import torch
 
-pass
-'''注意文件的颜色变化'''
-
-# 第二次修改
-
-
+x = torch.tensor(1.0, requires_grad=True)
+y = torch.tensor(2.0, requires_grad=True)
+z = x**2+y
+z.backward()
+print(z, x.grad, y.grad)
