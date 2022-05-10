@@ -5,6 +5,7 @@ __pycache__/
 
 .idea/
 *.gitignore
+desktop.ini
 # C extensions
 *.so
 
