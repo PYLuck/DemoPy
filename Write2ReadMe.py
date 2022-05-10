@@ -13,4 +13,4 @@ with open('./ReadMe.md', 'w', encoding='utf-8') as f:
         f.write(str(file) + '\n Info: ' + firstLine.readline() + '\n')
         firstLine.close()
 
-print('更新完成！')
+print('------更新完成！-------')
