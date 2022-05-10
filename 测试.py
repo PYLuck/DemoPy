@@ -6,4 +6,3 @@ z = x**2+y
 z.backward()
 print(z, x.grad, y.grad)
 
-"测试01"

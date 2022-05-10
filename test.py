@@ -79,20 +79,6 @@ else:
 
 
 
-import random
-import time
-
-r4 = random.sample(range(1, 100), 40)
-
-start_time = time.time()
-for _ in range(100000):
-    a = []
-    a.append(3.5)
-    a.append(5.1)
-
-    a.extend(r4)
-    b = np.asarray(a, dtype=np.float32)
-
 
 
 
