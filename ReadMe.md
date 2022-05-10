@@ -27,3 +27,6 @@ G:\DeepLearn\DemoPy\ReadExcel_Demo.py
 G:\DeepLearn\DemoPy\ReName_Demo.py
  Info: """对文件进行批量操作：批量重命名"""
 
+G:\DeepLearn\DemoPy\Wordcloud_Demo.py
+ Info: # 词云--出现频率越多的词，字体越大;    词云库、jieba库;
+
