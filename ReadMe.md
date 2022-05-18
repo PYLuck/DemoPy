@@ -9,6 +9,9 @@ G:\DeepLearn\DemoPy\Argparse_Demo.py
 G:\DeepLearn\DemoPy\AsyncAwait_Demo.py
  Info: """协程的语法糖 async和await: 适用python3.5之后的版本
 
+G:\DeepLearn\DemoPy\Conv2dTF1.4_Demo.py
+ Info: # tensorflow1.4实现conv2d()运算；numpy创建张量
+
 G:\DeepLearn\DemoPy\DesignMode_Demo.py
  Info: """Python设计模型——面向对象:   封装->继承->多态(Python本身是一门多态语言)
 
