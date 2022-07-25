@@ -105,11 +105,11 @@ def Convert2Json(data, Img_Path, json_file):
 
 
 if __name__ == '__main__':
-    Path = r'./DataLoad/grozi.csv'                  # 示例文件
+    Path = r'DataLoad/GroziImg/grozi.csv'  # 示例文件
     img_path = r'./DataLoad/GroziImg/ImageSets/'      # 图片数据文件夹的地址，for获取图片宽高
     # 生成的_json文件
-    save_json_train = 'instances_train2017.json'
-    save_json_val = 'instances_val2017.json'
+    save_json_train = './DataLoad/GroziImg/instances_train2017.json'
+    save_json_val = './DataLoad/GroziImg/instances_val2017.json'
 
     # 1. 读入CSV数据标注
     CSV_list = ReadFile(filePath=Path)         # return data->CSVdata
