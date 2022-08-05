@@ -4,6 +4,7 @@
  Ref: https://blog.csdn.net/m0_38106923/article/details/83862334; http://dlib.net/; https://pypi.org/simple/dlib/
  dlib库：C++工具箱，包含机器学习算法和工具；For Win系统: 新版Dlib库下载后需要在本地编译。编译要用到软件CMake，CMake编译CPP源代码还需要C++编译器。
     对于Windows系统，C++编译器在Visual Studio里面集成，所以需要安装Visual Studio并配置C++编译环境。
+    ubuntun环境：pip3 install cmake； dlib可用源码安装 Python setup.py install
     python3.6环境: pip install dlib==19.7.0
 方法2:百度API
 Ref:https://blog.csdn.net/swan_tang/article/details/88769612
