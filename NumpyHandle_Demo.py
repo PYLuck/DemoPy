@@ -2,7 +2,9 @@
 import numpy as np
 '''
 [Abstract]
-·遍历numpy数组的每一个元素：nditer
+·遍历numpy数组的每一个元素：nditer(array, order='C')
+
+
 '''
 
 Array = np.arange(6);                                                   print(Array.shape)
