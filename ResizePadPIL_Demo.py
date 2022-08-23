@@ -1,6 +1,7 @@
 import os
 from PIL import Image
 import math
+from torchvision import transforms
 
 
 def resize_pad(image,target_size):
@@ -9,7 +10,8 @@ def resize_pad(image,target_size):
     if minx == h:
         # w可以缩放到224, h进行padding
         new_h = int(h * (target_size/w))
-        image = image.resize((target_size, new_h), Image.Resampling.BICUBIC)
+        # image = image.resize((target_size, new_h), Image.Resampling.BICUBIC)
+        image = image.resize((target_size, new_h), Image.BICUBIC)
         # 生成一张targe_size大小的图
         aimage = Image.new('RGB', (target_size, target_size), (127, 127, 127))
         # 计算上面需要贴的大小
@@ -17,6 +19,8 @@ def resize_pad(image,target_size):
         # 将缩放后的图像贴上去
         aimage.paste(image, (0, psize_up))
         aimage.show()
+        tensor_img = transforms.ToTensor()(aimage).unsqueeze(0)
+        print(tensor_img.shape)
     else:          # minx==w
         # h可以缩放到224, w进行padding
         new_w = int(w * (target_size/h))
