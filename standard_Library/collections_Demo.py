@@ -1,8 +1,9 @@
-# collections Python标准库：namedtuple、deque、defaultdict、Couter
+# [标准库collections]提供Python标准内建容器 dict , list , set , 和 tuple 的替代选择 ：namedtuple、deque、defaultdict、Couter
 # 参考：https://blog.csdn.net/qq_41007998/article/details/120953231
 import collections
 '''
-Abstract: 包含4个usage
+Abstract: 
+包含4个usage
 1、函数 = defaultdict(函数)                                      # 当读取dict不存在的属性时，会返回默认值
 2、含有列表的类 = namedtuple(列表名称，列表)                          # 创建一个可以使用属性名称而不是索引获取值的元组
 3、列表 = deque(列表)                                              # 解决 频繁删除插入带来的效率问题
@@ -19,8 +20,8 @@ d2['one']= 1
 d2['two']= 2
 print(d2['four'])
 
-score = collections.defaultdict(list)
-print(score)
+score = collections.defaultdict(lambda:[0,1,2,3])
+print(score[1])
 
 # 2、
 # help(collections.namedtuple)
