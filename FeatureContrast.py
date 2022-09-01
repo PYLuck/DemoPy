@@ -8,9 +8,6 @@
     python3.6环境: pip install dlib==19.7.0
 
 """
-
-
-
 import torch
 import torchvision
 
@@ -60,8 +57,9 @@ class FeatureMatch:
             # load query image
             input_image = Image.open(self.path_to_query).convert('RGB')  # 底库图片
             input_tensor = preprocess(input_image)              # 预处理
-            input_batch = input_tensor.unsqueeze(0)             # create a mini-batch as expected by the model
-            input_batch = input_batch.to('cuda')
+            input_batch = input_tensor.unsqueeze(0).to('cuda')             # create a mini-batch as expected by the model
+            print(input_batch.__class__)
+            # input_batch = input_batch.to('cuda')
 
             # build feature extractor
             resnet50_feature_extractor = model
