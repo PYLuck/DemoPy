@@ -2,6 +2,8 @@ from pathlib import Path
 
 # 读取该项目下的所有以 _demo.py结尾的文件
 # 将更新的Demo 写入 ReadMe.md
+读取所有demo.py的__main__中的函数名
+
 
 Part_Star = "# 这是一个demo的存放项目\n #### 主要存放各类功能函数的方法，用于后续的学习与使用。" \
             "\n##### 例如：argpase_demo.py 存放的是import argpase的使用方法" \
