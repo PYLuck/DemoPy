@@ -8,7 +8,7 @@ import torch
 def Load_models(model_list=None, model_path=None):
     if model_list is None:
         model_list = ['squeezenet1_0', 'shufflenetv2_x1', 'inception_v3']
-    squeezenet1_0 = models.squeezenet1_0(pretrained=False)
+    squeezenet1_0 = models.squeezenet1_1(pretrained=False)
     shufflenetv2_x1 = models.shufflenet_v2_x1_0(pretrained=False)
     inception_v3 = models.inception_v3(pretrained=False)
 

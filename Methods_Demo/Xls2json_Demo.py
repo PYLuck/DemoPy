@@ -7,9 +7,9 @@ json文件包含以下Key：info、licenses、images、annotations
 
 
 import json
-import xlrd  # 需要1.2.0版本的，2.0以上的版本只能读取.xls类型的文件
+# import xlrd  # 需要1.2.0版本的，2.0以上的版本只能读取.xls类型的文件
 import csv
-import imagesize        # 用于获取图片宽＆高
+# import imagesize        # 用于获取图片宽＆高
 
 
 
@@ -60,8 +60,6 @@ def transfer(string):
         pass
     return True if string.lower() == 'true' else (False if string.lower() == 'false' else string)
 
-
-
 # 2.[dict{info}]转Json
 def Convert2Json(data, Img_Path, json_file):
     # 初始化
@@ -101,6 +99,26 @@ def Convert2Json(data, Img_Path, json_file):
 
     print("------------create {} done--------------".format(json_file))
 
+def Read_CSV(filePath):
+    fileType = filePath.split(".")[-1]
+    print("读入数据[xls/csv]:", f'{filePath}\t{fileType}')
+
+    data = []
+    with open(filePath) as csvfile:
+        rows = csv.reader(csvfile)  # 使用csv.reader读取csvfile中的文件
+        title = next(rows)  # 读取第一行の 列标题
+        # 以title为键，按行写入字典
+        val = [[data.append({title[index]: transfer(it[index]) for index in range(0, len(title))})] for it in rows]
+        import re
+        for id in range(len(data)):
+            # print("data__", data[id])
+            ID = data[id][title[0]]
+            Info = re.findall(r'/(.*)/', data[id][title[2]])[0]
+            print(str(ID)+'.jpg'+'\t'+Info)
+
+
+    return data
+
 
 
 
@@ -111,11 +129,18 @@ if __name__ == '__main__':
     save_json_train = './DataLoad/GroziImg/instances_train2017.json'
     save_json_val = './DataLoad/GroziImg/instances_val2017.json'
 
-    # 1. 读入CSV数据标注
-    CSV_list = ReadFile(filePath=Path)         # return data->CSVdata
+    try:
+        # 读取CSV分支
+        CSV_list = Read_CSV(filePath='DataLoad/GroziImg/class_label.csv')
 
-    # 2.传入CSV_list=[dict], 写入json_file
-    Convert2Json(data=CSV_list, Img_Path=img_path, json_file=save_json_val)
+    except:
+        if CSV_list is None:
+            # 1. 读入CSV数据标注
+            CSV_list = ReadFile(filePath=Path)         # return data->CSVdata
+
+            # 2.传入CSV_list=[dict], 写入json_file
+            Convert2Json(data=CSV_list, Img_Path=img_path, json_file=save_json_val)
+
 
 
 

@@ -1,10 +1,21 @@
+'''PIL读取图片,resize等'''
 import os
 from PIL import Image
 import math
 from torchvision import transforms
 
+'''
+io.imread, cv2.imread                                               # 读取的图片是ndarray
+PIL.Image.open(image_path)
+AImage = Image.new('RGB', (224, 224), color=(255, 255, 255))        # 生成图片        
 
-def resize_pad(image,target_size):
+PILimg.resize(w, h)
+transforms.Resize([h, w])           # * PIL.Image对象size属性返回的是w, h，而resize的参数顺序是h, w
+transforms.Resize(x)        # 将图片短边缩放至x，长宽比保持不变
+'''
+
+
+def resize_pad(image, target_size):
     w,h = image.size
     minx = min(w,h)
     if minx == h:
@@ -35,6 +46,7 @@ def resize_pad(image,target_size):
 
 
 if __name__ == '__main__':
+
     image_path = "/home/xk/图片/Im_test.jpeg"
     # 无失真缩放：resize_pad
     image = Image.open(image_path).convert('RGB')

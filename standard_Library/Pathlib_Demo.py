@@ -16,13 +16,13 @@ str(Path.home())                # C:\Users\PyLuck
 print(Path(__file__))           # 在pycharm中运行的结果：F:\经济技术开发区\DemoProj\Pathlib_Demo.py   在cmd中运行：Pathlib_Demo.py
 
 # 获取路径组成部分
-file = Path('./test.py')
+file = Path('../test.py')
 print(file.match('*.py'))       # True 检查文件后缀是否匹配
 # 文件名, 后缀, 父级(cd ..), 目录前面的部分
 print(file.stem, file.suffix, file.parent, file.anchor)     # test .py
 
 # 子路径扫描
-files = Path('DataLoad/dataTest')       # 先获取子路径
+files = Path('../DataLoad/dataTest')       # 先获取子路径
 # if files.is_dir() 判断是否为 文件夹            # if files.exists   判断是否 存在
 print([str(sub.stem) for sub in files.iterdir() if files.is_dir()])     # ['001end', '002end', '003end', '004end']
 '''
@@ -39,7 +39,7 @@ for sub in files.iterdir():
 print(str(Path.home() / 'dir' / 'file.txt'))     # C:\Users\PyLuck\dir\file.txt
 
 # 创建文件 + touch判断文件存在
-fi = Path('ReadMe.md')          # 创建一个.md文件
+fi = Path('../ReadMe.md')          # 创建一个.md文件
 print(fi.touch(exist_ok=True))          # 输出 None 表示文件已存在
 # 创建目录.mkdir()  .mkdir(parents=True)可以创建多级目录
 Path('./Test').mkdir()         # 文件夹已存在时无法创建
