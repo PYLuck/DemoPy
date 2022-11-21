@@ -9,7 +9,7 @@ Part_Star = "# 目录\n #### 主要存放各类功能函数的方法，用于后
             "\n##### 例如：argpase_demo.py 存放的是import argpase的使用方法" \
             "\n注：**Write2ReadMe.py** 是用于将本项目中的所有.py文件(即功能函数_demo)**更新**到ReadMe.md中\n"
 
-with open('./ReadMe1.md', 'w', encoding='utf-8') as f:
+with open('../ReadMe.md', 'w', encoding='utf-8') as f:
     f.writelines(Part_Star + '目录:\n')
     for file in Path(__file__).parent.rglob('*.py'):
         firstLine = open(str(file), 'r', encoding='utf-8')
