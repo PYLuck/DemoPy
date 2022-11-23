@@ -22,3 +22,17 @@ fi
 echo "———————————————–" >> ./log_data/log$LogNameDATE.log
 echo "BACKUP DATE:" $(date +"%Y-%m-%d %H:%M:%S") >> ./log_data/log$LogNameDATE.log
 echo "———————————————– " >> ./log_data/log$LogNameDATE.log
+
+# 获取文件名，获取文件路径
+# 参考：https://blog.csdn.net/ksj367043706/article/details/94993422
+# https://blog.csdn.net/weixin_30573089/article/details/112960362
+# 多行注释用 :<<! 语句块 !
+:<<!
+对${}的总结：
+#代表左起，%代表右起
+两个符号代表最后一个字符，一个符号代表第一个字符
+    #：左起第一个
+    ##： 左起最后一个
+    %：右起第一个
+    %%：右起最后一个
+!
