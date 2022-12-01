@@ -12,9 +12,20 @@ print('推理时间{}ms',end-start)     # 单位：秒
 import time
 
 import torch
-from torchvision.models.resnet import resnet18
+import torch.nn as nn
 
 device = torch.device("cuda:0")
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv = nn.Conv2d(in_channels=3, out_channels=1, kernel_size=3)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        x = self.conv(x)
+        x = self.relu(x)
+        return x
 
 
 # 测试方法1--time.time()秒：
@@ -33,7 +44,6 @@ def use_timeInfer(random_input, model,iters):
 
     mean_time = _time.mean().item()
     print('推理时间： {:.4f} 毫秒'.format(mean_time*1000))  # time单位：s *1000 -> ms
-
 
 # 测速方法2--torch.cuda.Event毫秒
 def use_torchEventInfer(random_input, model, iters):
@@ -56,7 +66,7 @@ def use_torchEventInfer(random_input, model, iters):
 
 if __name__ == '__main__':
 
-    model = resnet18()
+    model = Net()
     model.to(device)
 
     random_input = torch.randn(1, 3, 224, 224).to(device)
