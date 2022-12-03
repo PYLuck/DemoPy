@@ -16,7 +16,7 @@ docker rmi 镜像名          # 删镜像
 拉取完毕后，查看镜像：
 docker images -a
   0.1 基于镜像,run 创建一台全新的容器
-  docker run -itd --name=pyl_test01  [tag] /bin/bash
+  docker run -itd --name=pyl_test01  [REPOSITORY:TAG] /bin/bash
   -d  启动守护式容器（后台服务器）
   -it 以交互模式运行容器
   -p 宿主机端口:容器端口    —P 随机端口映射
@@ -51,9 +51,36 @@ docker images -a
 
 # 高级篇
 :<<!
-1、Dockerfile解析         创建镜像：
-由4部分信息组成：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令
-ADD，将文件<src>拷贝到container的文件系统对应的路径<dest>
+1、Dockerfile         创建镜像：
+用来构建Docker镜像的文本文件, 是由一条条构建镜像所需要的指令和参数构成的脚本！
+    由4部分信息组成：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令
+# Usage:
+docker build -t 新镜像名:TAG .
+
+# 保留字:
+FROM  基础镜像
+MAINTAINER  镜像维护者Neme@
+ENV   设置环境变量
+
+RUN   容器构建时需要执行的命令
+WORKDIR  指定容器创建后, 终端登录进来的 默认工作目录
+ADD   将文件<src>拷贝到 镜像路径<dest>, 且会自动解压tar包和处理URL
+
+
+EXPOSE  当前容器对外暴露出的端口
+CMD   指定容器启动后 要做的[]; Dockerfile中只有最后1个CMD命令生效; 会被docker run之后的参数覆盖
+ENTRYPOINT  类似CMD, 但不会被docker run后面的命令覆盖
+
+# 不常用
+USER  指定该镜像以什么用户去执行, 不指定默认root
+VOLUME  容器数据卷, 相当于 -v
+
+# 删除虚悬镜像 <none none>
+docker image ls -f dangling=true
+docker image prune
+
+
+
 
 2、容器编排 docker-compose.yml 配置自己的镜像
 !
