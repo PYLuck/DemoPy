@@ -83,6 +83,7 @@ docker image prune
 
 
 2、容器编排 docker-compose.yml 配置自己的镜像
+Compose是Docker公司推出的工具软件,可以管理多个Docker容器，用配置文件启动关闭这些容器；
 !
 
 
