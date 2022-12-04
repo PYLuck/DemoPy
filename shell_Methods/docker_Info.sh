@@ -1,7 +1,20 @@
-##!/bin/sh
+#!/bin/sh
 
 # 查看docker信息
 docker info
+docker images -a
+docker ps
+# 备用docker镜像源
+:<<!
+1.网易
+http://hub-mirror.c.163.com
+2.Docker中国区官方镜像
+https://registry.docker-cn.com
+3.ustc
+https://docker.mirrors.ustc.edu.cn
+4.中国科技大学
+https://docker.mirrors.ustc.edu.cn
+!
 
 # 基本用法
 :<<!
@@ -51,7 +64,7 @@ docker images -a
 
 # 高级篇
 :<<!
-1、Dockerfile         创建镜像：
+【一】、Dockerfile         创建镜像：
 用来构建Docker镜像的文本文件, 是由一条条构建镜像所需要的指令和参数构成的脚本！
     由4部分信息组成：基础镜像信息、维护者信息、镜像操作指令和容器启动时执行指令
 # Usage:
@@ -80,23 +93,56 @@ docker image ls -f dangling=true
 docker image prune
 
 
-
-
-2、容器编排 docker-compose.yml 配置自己的镜像
+【二】docker-compose.yml 容器编排  配置自己的容器服务
 Compose是Docker公司推出的工具软件,可以管理多个Docker容器，用配置文件启动关闭这些容器；
+官网安装docker compose:
+https://docs.docker.com/compose/install/other/
+
+# 常用命令
+docker-compose --version
+docker-compose config -q  # 检查配置, 有问题才有输出
+
+docker-compose up -d     # 启动所有的docker-compose服务并后台运行
+docker-compose -f /proj/docker-compose.yml up -d
+
+docker-compose images       # 仅查看通过yml得到的容器
+
+# docker-compose.yml 编写示例:
+# yml文件的格式层级关系是缩进两个英文状态的空格，不能用缩进符等替代空格
+version: "3"    # 使用3以后的版本
+
+services:     # 有几个容器服务
+  your_service_01:    # 容器名
+    image: ubuntu/pytorch:1.9.1-cuda11.1-cudnn8-runtime
+    environment:
+      - USER: 'root'
+      - PASSWORD: '123456'
+    ports:
+      - "8420:88"
+    volumes:
+      - /data/sda1/workspace: /workspace    # 从宿主机挂载目录
+    networks:
+      -
+    command: /bin/bash
+
 !
 
 
-
-# docker镜像源
+# 小结及汇总
 :<<!
-1.网易
-http://hub-mirror.c.163.com
-2.Docker中国区官方镜像
-https://registry.docker-cn.com
-3.ustc
-https://docker.mirrors.ustc.edu.cn
-4.中国科技大学
-https://docker.mirrors.ustc.edu.cn
-!
+# step1:  镜像拉取/下载
+docker search 镜像名
+docker pull 1.9.1-cuda11.1-cudnn8-runtime
+docker images -a
+# step2:
+vim Dockerfile      # 构造自己的镜像
+docker build -t 新镜像名:TAG .
 
+# step3:  基于镜像docker run一个或compose多个容器
+vim docker-compose.yml    # 构造自己的容器
+docker ps
+#step4: 进入容器
+docker exec -it [容器名] /bin/bash
+# step5:
+[OK]
+!
