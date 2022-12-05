@@ -140,7 +140,7 @@ docker build -t 新镜像名:TAG .
 
 # step3:  基于镜像docker run一个或compose多个容器
 vim docker-compose.yml    # 构造自己的容器
-docker run -itd --name=pyl_test01  [REPOSITORY:TAG] /bin/bash
+docker run -itd -v /home/dock/workspace:/workspace --name=pyl_test01  [REPOSITORY:TAG] /bin/bash
 docker ps
 #step4: 进入容器
 docker exec -it [容器名] /bin/bash
