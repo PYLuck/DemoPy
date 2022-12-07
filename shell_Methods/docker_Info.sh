@@ -55,8 +55,12 @@ docker images -a
 
   0.4 导出,导入容器
   # 容器打包成镜像 导出
-  docker export 容器id > aaa_test.tar
+  docker export 容器id > aaa_test.tar         # 类似快照，所以不包含元数据及历史信息，体积更小
+  # 镜像打包
+  docker save -o image_name > 存储路径/镜像名.tar
+
   # 导入
+  docker load < Path/your_image.tar
   cat aaa_test.tar | docker import - 镜像用户/镜像名:镜像版本号
   导入该镜像后,(1) docker run启动;(2) docker exec进入
 
