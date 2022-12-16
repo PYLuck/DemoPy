@@ -18,11 +18,13 @@ def concept():
     # 基础网络： 特征提取的基础架构，VGG、ResNet、DenseNet等
 
     # 先验框（prior box）
-    # 置信度： 模型表达自己框出了物体的概率程度。
+    # 置信度： 模型表达自己框出了物体的概率程度。假设网络要预测m类物体，那么实际网络会预测出m+1类，一般第一列就是置信度
     # NMS(非极大值抑制)：找到最佳的目标边界框，消除周围多余的边界框
     # 模型输出：预测box, 预测种类
 
-    # Loss = 位置回归损失(smooth L1 loss)和分类损失( )的加权和。
+    # Loss = 位置回归损失(smooth L1 loss)和分类损失(CE)的加权和。
+    L1 Loss、Smooth L1 Loss、IOU Loss
+    如 YoloV5的三种损失函数：Loss = 分类损失(BCE)+定位损失(GIoU)+置信度损失(BCE)
 
 
     """
@@ -35,6 +37,7 @@ def concept():
 
 '''
 # Yolo
+
 
 
 # SSD
