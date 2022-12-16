@@ -10,7 +10,7 @@ for x in range(256):
         img[x, y] = 255/(1024*720) * sum
         sum += 1
 cv2.imshow('img', img)
-cv2.waitKey(5000)           # 显示保持
+cv2.waitKey(0)           # 显示保持, 0:任意键终止
 
 
 

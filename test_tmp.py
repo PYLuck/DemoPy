@@ -1,56 +1,75 @@
+import torch
+from torchvision import models
+from torch import nn
+
+print(dir(models))
+model = getattr(models, 'resnet18')()  # 获取属性值
+my = nn.Sequential(*list(model.children())[:-3])
+# print(my)
+# print(model)
+
+name = "zhs"
+# print(dir(name).__class__)
+
+
+pred = torch.tensor([[-0.5816, -0.3873, 44, -1.0145, 0.4053],
+                     [0.7265, 1.4164, 1.3443, 1.2035, 55],
+                     [66, 0.1673, 1.2590, -2.0757, 1.7255],
+                     [0.2021, 0.3041, 0.1383, 0.3849, 99]])
+
+values, indices = torch.topk(pred, 3)
+# print(values)
+# print(indices)
+
+
+# ========================updata==================================
+"""Pytorch中的model.modules()和model.children()的区别"""
+
+a = torch.randn([128, 3, 224, 224])
+# print(a.shape)
+# print(a[0:-1:2].shape)
+
+#
+m = nn.Linear(256, 66)
+input = torch.randn(128, 256)
+output1 = m(input)
+# print(output1.size())  # [(128--40])
+
+
+# ================pytorch 优化器(optim)不同参数组，不同学习率 策略===================
+'''   
+optimizer = torch.optim.SGD([
+            {'params': other_params}, 
+            {'params': first_params, 'lr': 0.01*args.learning_rate},
+            {'params': second_params, 'weight_decay': args.weight_decay}],
+            lr=args.learning_rate,
+            momentum=args.momentum,)
 '''
-考试描述：
-给定一个有序字符列表，请查找顺序和逆序所有能构成该单词的字符合集。
-例如：输入字符列表K: ["A","B","C","D","A"]和单词"AB”。则顺序[0,1]和逆序[4,1]都能构成“AB”输出：[[0,1]，[4,1]]
-'''
 
-class FindStr(object):
-    def __init__(self):
-        pass
+import numpy as np
 
-    def str_collection(self, K=None, word=None):
-        """
+# print(np.random.random_sample())
 
-        :return: List
-        """
-        if K is None:
-            K = ["A", "B", "C", "D", "A"]
-            'AB'
-        m = 0
-        l = len(word)
-        outlist = []
-        order = []
-        K_dict = {i:val for i,val in enumerate(K)}
-        key_list = list(K_dict.keys())
-        val_list = list(K_dict.values())
-        for i in word:
-            pass
-        # ind = val_list.index('A')
-        # print(key_list[ind])
+# 查看当前目录已使用总大小可输入：du -h --max-depth=0
 
 
-        print(K_dict.values['A'])
-        print(K_dict)
-        for w in word:
-            print(w)
+import torch
 
+l1 = torch.tensor(1.5644)
+print(l1)
+l2 = torch.tensor(3.1524564)
+s = torch.stack([l1, l2])
+print(s)
+print(torch.sum(s))
 
-            # if word[m] == val:
-            #     order.append(i)
-            # if word[l-m] ==1
-            #
-            # m += 1
-            #
-            # print(i,val)
+nu = [lambda x1: x1 * 0.001, lambda x: x + 2000, lambda y: y ** 2]
+print(nu[0])
+# print(nu[1](10000))
+out = [n(3) for n in nu]
+print(out)
 
-        # word
-
-        print('测试结束',K)
-
-
-
-
-if __name__ == '__main__':
-    findStr = FindStr()
-    # findStr.str_collection(K=input(), word=input())
-    findStr.str_collection(K=["A", "B", "C", "D", "A"], word="AB")
+logi = []
+for n in nu:
+    oin = n(3)
+    logi.append(oin)
+print(logi)
