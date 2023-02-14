@@ -43,6 +43,7 @@ fi = Path('../ReadMe.md')          # 创建一个.md文件
 print(fi.touch(exist_ok=True))          # 输出 None 表示文件已存在
 # 创建目录.mkdir()  .mkdir(parents=True)可以创建多级目录
 Path('./Test').mkdir()         # 文件夹已存在时无法创建
+(Path('./test') / 'lab' if True else Path('./test')).mkdir(parents=True, exist_ok=True)     # Usage:TODO:
 Path('./Test').rmdir()        # 删除目录    .unlink用于删除文件
 
 # 打开文件，可传入Path对象
