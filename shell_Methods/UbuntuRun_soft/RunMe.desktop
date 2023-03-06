@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=RunMe
+Name[zh_CN]=RunMe
+Exec= bash /home/yskj/persons/ai_group/Moss/Script/UbuntuRun_soft/test_scrip.sh
+Path= /home/yskj/persons/ai_group/Moss/Script/UbuntuRun_soft
+Terminal=true
+Type=Application
+
